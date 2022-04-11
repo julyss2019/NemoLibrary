@@ -1,0 +1,6 @@
+command_mappings:
+  'mapping1':
+    plugin: 'NemoLibrary'
+    framework: 'framework1'
+    partten: 'nemolib <>'
+    mapping: '_nemolib'

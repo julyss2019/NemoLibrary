@@ -1,0 +1,9 @@
+msg:
+  success: '成功'
+  failed: '失败'
+  texts:
+    - '1'
+    - '2'
+node:
+  a:
+    b: 'test'

@@ -1,0 +1,72 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+plugins {
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
+    id 'java'
+    id 'maven-publish'
+}
+
+group 'com.github.julyss2019.nemolibrary.bukkit'
+version '1.0.1'
+
+publishing {
+    publications {
+        shadow(MavenPublication) { publication ->
+            project.shadow.component(publication)
+        }
+    }
+}
+
+/*publishing {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                artifact 'build\\libs\\NemoLibrary-1.0.0.jar'
+            }
+        }
+    }
+}*/
+
+repositories {
+    mavenLocal()
+
+    mavenCentral()
+
+    maven {
+        url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
+    }
+}
+
+shadowJar {
+    String version = "v" + project.version
+
+    archiveBaseName.set(project.name)
+    archiveClassifier.set('')
+    archiveVersion.set(version)
+}
+
+dependencies {
+//    implementation files("libs/objenesis-3.2.jar")
+    compileOnly 'org.bukkit:bukkit:1.13.2-R0.1-SNAPSHOT'
+    compileOnly 'org.spigotmc:spigot-api:1.13.2-R0.1-SNAPSHOT'
+    compileOnly 'net.md-5:bungeecord-chat:1.16-R0.4'
+
+    testImplementation 'org.bukkit:bukkit:1.13.2-R0.1-SNAPSHOT'
+    testImplementation 'org.spigotmc:spigot-api:1.13.2-R0.1-SNAPSHOT'
+    testImplementation 'net.md-5:bungeecord-chat:1.16-R0.4'
+    testImplementation(platform('org.junit:junit-bom:5.8.2'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
+    testImplementation "org.mockito:mockito-core:4.4.0"
+}
+
+
+test {
+    useJUnitPlatform()
+}
+
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from "src/main/resources/plugin.yml"
+    filter(ReplaceTokens, beginToken: '${', endToken: '}', tokens: ["version": project.version])
+}
