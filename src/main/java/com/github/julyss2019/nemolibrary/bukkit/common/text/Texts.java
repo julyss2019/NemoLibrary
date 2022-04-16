@@ -67,7 +67,7 @@ public class Texts {
 
                         if (right != -1) {
                             String placeholder = text.substring(nextIndex + 1, right);
-                            String value = placeholderHandler.getValue(placeholder);
+                            Object value = placeholderHandler.getValue(placeholder);
 
                             if (value != null) {
                                 result.append(value);

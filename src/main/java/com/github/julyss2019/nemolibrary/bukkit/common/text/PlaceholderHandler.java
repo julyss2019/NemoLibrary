@@ -9,5 +9,5 @@ public interface PlaceholderHandler {
      * @param key 键
      * @return 当返回值为 null 时将不处理占位符
      */
-    @Nullable String getValue(@NotNull String key);
+    @Nullable Object getValue(@NotNull String key);
 }

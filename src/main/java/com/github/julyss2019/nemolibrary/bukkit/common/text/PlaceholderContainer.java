@@ -6,9 +6,9 @@ import com.github.julyss2019.nemolibrary.bukkit.common.validation.annotation.Not
 import java.util.*;
 
 public class PlaceholderContainer implements PlaceholderHandler {
-    private final Map<String, String> map = new HashMap<>();
+    private final Map<String, Object> map = new HashMap<>();
 
-    public PlaceholderContainer put(@NotNull String key, @NotNull String value) {
+    public PlaceholderContainer put(@NotNull String key, @NotNull Object value) {
         Validator.checkNotNull(key, "key cannot be null");
         Validator.checkNotNull(value, "value cannot be null");
 
@@ -17,7 +17,7 @@ public class PlaceholderContainer implements PlaceholderHandler {
     }
 
     @Override
-    public String getValue(@NotNull String key) {
+    public Object getValue(@NotNull String key) {
         return map.get(key);
     }
 }
