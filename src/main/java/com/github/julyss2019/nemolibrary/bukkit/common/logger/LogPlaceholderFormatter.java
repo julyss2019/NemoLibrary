@@ -5,7 +5,7 @@ import com.github.julyss2019.nemolibrary.bukkit.common.validation.Validator;
 import com.github.julyss2019.nemolibrary.bukkit.common.validation.annotation.NotNull;
 
 public class LogPlaceholderFormatter {
-    public static String format(@NotNull String msg, String... args) {
+    public static String format(@NotNull String msg, Object... args) {
         Validator.checkNotNull(msg, "msg cannot be null");
         Validator.checkState(!ArrayUtils.containsElement(args, null), "args cannot contains null");
 
