@@ -54,28 +54,28 @@ public class Logger {
         return plugin;
     }
 
-    public void debug(@NotNull String msg, String... args) {
+    public void debug(@NotNull String msg, Object... args) {
         Validator.checkNotNull(msg, "msg cannot be null");
         Validator.checkState(!ArrayUtils.containsElement(args, null), "args cannot contains null");
 
         log(Level.DEBUG, msg, args);
     }
 
-    public void warning(@NotNull String msg, String... args) {
+    public void warning(@NotNull String msg, Object... args) {
         Validator.checkNotNull(msg, "msg cannot be null");
         Validator.checkState(!ArrayUtils.containsElement(args, null), "args cannot contains null");
 
         log(Level.WARNING, msg, args);
     }
 
-    public void info(@NotNull String msg, String... args) {
+    public void info(@NotNull String msg, Object... args) {
         Validator.checkNotNull(msg, "msg cannot be null");
         Validator.checkState(!ArrayUtils.containsElement(args, null), "args cannot contains null");
 
         log(Level.INFO, msg, args);
     }
 
-    public void log(@NotNull Level level, @NotNull String msg, String... args) {
+    public void log(@NotNull Level level, @NotNull String msg, Object... args) {
         Validator.checkNotNull(msg, "msg cannot be null");
         Validator.checkState(!ArrayUtils.containsElement(args, null), "args cannot contains null");
 
