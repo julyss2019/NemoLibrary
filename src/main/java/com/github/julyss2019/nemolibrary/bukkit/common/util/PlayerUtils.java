@@ -25,7 +25,7 @@ public class PlayerUtils {
         int total = 0;
         PlayerInventory playerInventory = player.getInventory();
 
-        for (int i = 0; i < playerInventory.getSize(); i++) {
+        for (int i = 0; i < 36; i++) {
             ItemStack itemStack = playerInventory.getItem(i);
 
             if (!ItemUtils.isValidItem(itemStack)) {
