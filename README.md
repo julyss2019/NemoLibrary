@@ -4,4 +4,4 @@
 
 ## Nemo 是谁?
 Nemo 是 Party Animals 游戏中的游戏角色，是下图左数第 5 个的柯基。
-![nemo](https://www.partyanimalsgame.com/static/img/wall-animal.75a27f92.png)
+![nemo](misc/images/wall-animal-release.png)
