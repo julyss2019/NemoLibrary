@@ -16,7 +16,7 @@ import java.util.Optional;
 
 public class ItemBuilder {
     private Material material;
-    private int amount;
+    private int amount = 1;
     private short durability;
     private String displayName;
     private List<String> lores = new ArrayList<>();
