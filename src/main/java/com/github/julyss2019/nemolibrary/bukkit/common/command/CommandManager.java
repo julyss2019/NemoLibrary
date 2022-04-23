@@ -173,7 +173,8 @@ public class CommandManager {
             }
         }
 
-        return result.stream().distinct().collect(Collectors.toList());
+        System.out.println("c tab");
+        return result.stream().filter(s -> s.startsWith(commandLineArgs[commandLineArgs.length - 1])).distinct().collect(Collectors.toList());
     }
 
     /**
