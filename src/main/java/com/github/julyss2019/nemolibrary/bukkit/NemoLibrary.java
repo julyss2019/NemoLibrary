@@ -8,6 +8,7 @@ import com.github.julyss2019.nemolibrary.bukkit.common.command.annotation.Comman
 import com.github.julyss2019.nemolibrary.bukkit.common.logger.Logger;
 import com.github.julyss2019.nemolibrary.bukkit.common.logger.LoggerDailyFileAppenderAutoFlushTask;
 import com.github.julyss2019.nemolibrary.bukkit.common.logger.LoggerManager;
+import com.github.julyss2019.nemolibrary.bukkit.common.util.BungeeUtils;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -31,6 +32,8 @@ public class NemoLibrary extends JavaPlugin {
 
         commandFramework.registerCommands(new PluginCommandGroup(this));
         new LoggerDailyFileAppenderAutoFlushTask(this).runTaskTimer(this, 0L, 20L);
+        BungeeUtils.setPlugin(this);
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         logger.info("插件初始化完毕.");
     }
 
