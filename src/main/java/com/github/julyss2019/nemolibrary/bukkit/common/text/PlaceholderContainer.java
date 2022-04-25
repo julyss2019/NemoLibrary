@@ -16,6 +16,14 @@ public class PlaceholderContainer implements PlaceholderHandler {
         return this;
     }
 
+    public PlaceholderContainer put(@NotNull String key, @NotNull String value) {
+        Validator.checkNotNull(key, "key cannot be null");
+        Validator.checkNotNull(value, "value cannot be null");
+
+        map.put(key, value);
+        return this;
+    }
+
     @Override
     public Object getValue(@NotNull String key) {
         return map.get(key);
