@@ -30,3 +30,6 @@ jobs:
         distribution: 'temurin'
     - name: Build with Gradle
       run: sudo sh ./gradlew clean build
+    - name: Release Drafter
+      uses: release-drafter/release-drafter@v5.19.0
+      with: {}
