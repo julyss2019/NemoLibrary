@@ -47,7 +47,7 @@ public class LoggerManager {
         Logger logger = createLogger(plugin);
 
         logger.addAppender(new ConsoleAppender(new PatternLayout("%c[%p] [%l] %m"), Level.INFO));
-        logger.addAppender(new RollingFileAppender(new PatternLayout("[%d{yyyy-MM-dd HH:mm:ss} [%l] %m"), Level.DEBUG,
+        logger.addAppender(new RollingFileAppender(new PatternLayout("[%d{yyyy-MM-dd HH:mm:ss}] [%l] %m"), Level.DEBUG,
                 new File(plugin.getDataFolder(), "logs" + File.separator + "latest.log"), 3, "yyyy-MM-dd'.log'"));
         return logger;
     }
