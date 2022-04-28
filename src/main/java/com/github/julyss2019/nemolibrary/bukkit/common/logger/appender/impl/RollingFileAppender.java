@@ -63,9 +63,7 @@ public class RollingFileAppender extends FileAppender {
 
     @Override
     public void execute(@NotNull MessageContext messageContext) {
-        super.execute(messageContext);
-
         roll();
-        write(getLayout().format(messageContext));
+        super.execute(messageContext);
     }
 }
