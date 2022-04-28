@@ -18,7 +18,7 @@ permissions:
 
 jobs:
   build:
-
+    permissions: write-all
     runs-on: macos-10.15
 
     steps:
@@ -31,6 +31,7 @@ jobs:
     - name: Build with Gradle
       run: sudo sh ./gradlew clean build
     - name: Release Drafter
+
       env: 
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
       uses: release-drafter/release-drafter@v5.19.0
