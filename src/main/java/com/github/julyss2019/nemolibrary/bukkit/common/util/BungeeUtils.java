@@ -8,18 +8,6 @@ import com.google.common.io.ByteStreams;
 import org.bukkit.entity.Player;
 
 public class BungeeUtils {
-    public static NemoLibrary plugin;
-
-    public static void setPlugin(@NotNull NemoLibrary plugin) {
-        Validator.checkNotNull(plugin, "plugin cannot be null");
-
-        if (BungeeUtils.plugin != null) {
-            throw new UnsupportedOperationException();
-        }
-
-        BungeeUtils.plugin = plugin;
-    }
-
     public static void connectServer(@NotNull Player player, @NotNull String server) {
         Validator.checkNotNull(player, "player cannot be null");
         Validator.checkNotNull(server, "server cannot be null");
@@ -28,6 +16,6 @@ public class BungeeUtils {
 
         out.writeUTF("Connect");
         out.writeUTF(server);
-        player.sendPluginMessage(plugin, "BungeeCord", out.toByteArray());
+        player.sendPluginMessage(NemoLibrary.getInstance(), "BungeeCord", out.toByteArray());
     }
 }

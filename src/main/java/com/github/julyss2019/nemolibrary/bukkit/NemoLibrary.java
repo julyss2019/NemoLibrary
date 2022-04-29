@@ -32,7 +32,6 @@ public class NemoLibrary extends JavaPlugin {
 
         commandFramework.registerCommands(new PluginCommandGroup(this));
         new LoggerDailyFileAppenderAutoFlushTask(this).runTaskTimer(this, 0L, 20L);
-        BungeeUtils.setPlugin(this);
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         logger.info("插件初始化完毕.");
     }
