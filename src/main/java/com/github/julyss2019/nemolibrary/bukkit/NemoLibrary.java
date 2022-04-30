@@ -8,7 +8,7 @@ import com.github.julyss2019.nemolibrary.bukkit.common.command.annotation.Comman
 import com.github.julyss2019.nemolibrary.bukkit.common.logger.Logger;
 import com.github.julyss2019.nemolibrary.bukkit.common.logger.LoggerDailyFileAppenderAutoFlushTask;
 import com.github.julyss2019.nemolibrary.bukkit.common.logger.LoggerManager;
-import com.github.julyss2019.nemolibrary.bukkit.common.util.BungeeUtils;
+import com.github.julyss2019.nemolibrary.bukkit.common.logging.LogManager;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -17,6 +17,7 @@ public class NemoLibrary extends JavaPlugin {
     private static NemoLibrary instance;
     private Logger logger;
     private LoggerManager loggerManager;
+    private LogManager logManager;
     private CommandManager commandManager;
     private CommandFramework commandFramework;
 
@@ -25,14 +26,15 @@ public class NemoLibrary extends JavaPlugin {
         instance = this;
         NemoLibraryAPI.setPlugin(this);
         this.loggerManager = new LoggerManager(this);
+        this.logManager = new LogManager(this);
         this.logger = loggerManager.createSimpleLogger(this);
 
         this.commandManager = new CommandManager(this);
         this.commandFramework = commandManager.createCommandFramework(this);
 
         commandFramework.registerCommands(new PluginCommandGroup(this));
-        new LoggerDailyFileAppenderAutoFlushTask(this).runTaskTimer(this, 0L, 20L);
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+        runTasks();
         logger.info("插件初始化完毕.");
     }
 
@@ -44,6 +46,11 @@ public class NemoLibrary extends JavaPlugin {
         loggerManager.unregisterAllLoggers();
     }
 
+    private void runTasks() {
+        new LoggerDailyFileAppenderAutoFlushTask(this).runTaskTimer(this, 0L, 20L);
+        new com.github.julyss2019.nemolibrary.bukkit.common.logging.logger.LoggerDailyFileAppenderAutoFlushTask(this).runTaskTimer(this, 0L, 20L);
+    }
+
     public CommandFramework getCommandFramework() {
         return commandFramework;
     }
@@ -52,10 +59,12 @@ public class NemoLibrary extends JavaPlugin {
         return logger;
     }
 
-
-
     public static NemoLibrary getInstance() {
         return instance;
+    }
+
+    public LogManager getLogManager() {
+        return logManager;
     }
 
     public LoggerManager getLoggerManager() {
