@@ -46,4 +46,5 @@ jobs:
         files: |
           build/libs/*jar
         name: ${{env.VERSION}}
+        tag-name: ${{env.VERSION}}
         
