@@ -20,7 +20,9 @@ public class LoggerDailyFileAppenderAutoFlushTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        taskLock.checkLocked();
+        if (taskLock.isLocked()) {
+            return;
+        }
 
         taskLock.lock();
         try {
