@@ -3,6 +3,7 @@ package com.github.julyss2019.nemolibrary.bukkit.api;
 import com.github.julyss2019.nemolibrary.bukkit.NemoLibrary;
 import com.github.julyss2019.nemolibrary.bukkit.common.command.CommandFramework;
 import com.github.julyss2019.nemolibrary.bukkit.common.logger.LoggerManager;
+import com.github.julyss2019.nemolibrary.bukkit.common.logging.LogManager;
 import com.github.julyss2019.nemolibrary.bukkit.common.validation.annotation.NotNull;
 import com.github.julyss2019.nemolibrary.bukkit.common.command.CommandManager;
 
@@ -21,7 +22,12 @@ public class NemoLibraryAPI {
         return plugin.getCommandManager();
     }
 
+    @Deprecated
     public static LoggerManager getLoggerManager() {
         return plugin.getLoggerManager();
+    }
+
+    public static LogManager getLogManager() {
+        return plugin.getLogManager();
     }
 }
