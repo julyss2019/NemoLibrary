@@ -18,21 +18,33 @@ permissions:
 
 jobs:
   build:
-    permissions: write-all
+    permissions:
+      contents: write
     runs-on: macos-10.15
 
     steps:
     - uses: actions/checkout@v3
+    
     - name: Set up JDK 11
       uses: actions/setup-java@v3
       with:
         java-version: '11'
         distribution: 'temurin'
+        
     - name: Build with Gradle
-      run: sudo sh ./gradlew clean build
-    - name: Release Drafter
-
-      env: 
+      run: sudo sh ./gradlew clean build createVersionFile
+      
+    - name: Set Variables From disk
+      run: echo "VERSION=$(cat VERSION)" >> $GITHUB_ENV
+      
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      env:
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-      uses: release-drafter/release-drafter@v5.19.0
-      with: {}
+      with:
+        prerelease: true
+        files: |
+          build/libs/*jar
+        name: ${{env.VERSION}}
+        tag_name: ${{env.VERSION}}
+        

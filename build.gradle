@@ -51,3 +51,11 @@ processResources {
     from "src/main/resources/plugin.yml"
     filter(ReplaceTokens, beginToken: '${', endToken: '}', tokens: ["version": project.version])
 }
+
+task createVersionFile {
+    def file = file("VERSION")
+    if (!file.exists()) {
+        file.createNewFile()
+    }
+    file.write version
+}
