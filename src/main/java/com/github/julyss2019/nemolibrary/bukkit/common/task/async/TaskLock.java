@@ -3,7 +3,7 @@ package com.github.julyss2019.nemolibrary.bukkit.common.task.async;
 public class TaskLock {
     private boolean locked;
 
-    public void checkLocked() {
+    private void checkLocked() {
         if (isLocked()) {
             throw new RuntimeException("task is waiting");
         }
@@ -18,6 +18,7 @@ public class TaskLock {
     }
 
     public void lock() {
+        checkLocked();
         setLocked(true);
     }
 
