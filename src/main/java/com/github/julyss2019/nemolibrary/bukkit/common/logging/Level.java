@@ -4,7 +4,7 @@ import com.github.julyss2019.nemolibrary.bukkit.common.validation.annotation.Not
 import org.bukkit.ChatColor;
 
 public enum Level {
-    DEBUG(0, ChatColor.GRAY), INFO(1, ChatColor.WHITE), WARNING(2, ChatColor.YELLOW), ERROR(3, ChatColor.RED);
+    DEBUG(0, ChatColor.GRAY), INFO(1, ChatColor.WHITE), WARN(2, ChatColor.YELLOW), ERROR(3, ChatColor.RED);
 
     private final int level;
     private final ChatColor defaultColor;
