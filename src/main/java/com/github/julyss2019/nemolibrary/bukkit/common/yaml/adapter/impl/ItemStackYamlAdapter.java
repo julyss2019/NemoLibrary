@@ -44,7 +44,7 @@ public class ItemStackYamlAdapter implements YamlAdapter<ItemStack> {
 
         return new ItemBuilder()
                 .material(itemSection.getString(Paths.of("material"), null))
-                .durability(itemSection.getShort(Paths.of("durability"), null))
+                .durability(itemSection.getShort(Paths.of("durability"), DefaultValue.of((short) 0)))
                 .displayName(itemSection.getString(Paths.of("display_name"), DefaultValue.of(null)))
                 .setLores(itemSection.getStringList(Paths.of("lores"), DefaultValue.of(Collections.emptyList())))
                 .build();
