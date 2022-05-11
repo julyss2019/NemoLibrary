@@ -64,11 +64,11 @@ public class Logger {
         log(Level.DEBUG, msg, args);
     }
 
-    public void warning(@NotNull String msg, Object... args) {
+    public void warn(@NotNull String msg, Object... args) {
         Validator.checkNotNull(msg, "msg cannot be null");
         Validator.checkState(!ArrayUtils.containsElement(args, null), "args cannot contains null");
 
-        log(Level.WARNING, msg, args);
+        log(Level.WARN, msg, args);
     }
 
     public void info(@NotNull String msg, Object... args) {
