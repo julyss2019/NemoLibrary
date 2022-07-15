@@ -12,6 +12,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.Plugin;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.*;
 
 public class Logger {
@@ -57,6 +59,19 @@ public class Logger {
         return plugin;
     }
 
+    public void error(@NotNull String msg, @NotNull Throwable throwable, Object... args) {
+        Validator.checkNotNull(msg, "msg cannot be null");
+        Validator.checkNotNull(throwable, "throwable cannot be null");
+        Validator.checkState(!ArrayUtils.containsElement(args, null), "args cannot contains null");
+
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(stringWriter);
+
+        throwable.printStackTrace(printWriter);
+
+        log0(Level.ERROR, LogPlaceholderFormatter.format(msg, args) + "\n" + stringWriter);
+    }
+
     public void debug(@NotNull String msg, Object... args) {
         Validator.checkNotNull(msg, "msg cannot be null");
         Validator.checkState(!ArrayUtils.containsElement(args, null), "args cannot contains null");
@@ -82,11 +97,13 @@ public class Logger {
         Validator.checkNotNull(msg, "msg cannot be null");
         Validator.checkState(!ArrayUtils.containsElement(args, null), "args cannot contains null");
 
-        String placeholderFormattedMsg = LogPlaceholderFormatter.format(msg, args);
+        log0(level, LogPlaceholderFormatter.format(msg, args));
+    }
 
+    private void log0(Level level, String msg) {
         for (Appender appender : appenders) {
             if (level.getLevel() >= appender.getThreshold().getLevel()) {
-                appender.execute(new MessageContext(plugin, level, placeholderFormattedMsg, levelColorMap.get(level)));
+                appender.execute(new MessageContext(plugin, level, msg, levelColorMap.get(level)));
             }
         }
     }
