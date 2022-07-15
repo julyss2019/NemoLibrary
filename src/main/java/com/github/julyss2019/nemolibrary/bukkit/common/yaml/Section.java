@@ -202,6 +202,14 @@ public class Section {
         return getByBukkit(paths, def);
     }
 
+    public long getLong(@NotNull String path) {
+        return getLong(Paths.of(path), null);
+    }
+
+    public long getLong(@NotNull Paths paths, @Nullable DefaultValue<Long> def) {
+        return getByBukkit(paths, def);
+    }
+
     public Set<String> getStringSet(@NotNull String path) {
         return getStringSet(Paths.of(path), null);
     }
