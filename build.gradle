@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'com.github.julyss2019.nemolibrary.bukkit'
-version '1.0.4'
+version '1.0.5'
 
 publishing {
     publications {
@@ -31,6 +31,9 @@ dependencies {
     compileOnly 'org.bukkit:bukkit:1.13.2-R0.1-SNAPSHOT'
     compileOnly 'org.spigotmc:spigot-api:1.13.2-R0.1-SNAPSHOT'
     compileOnly 'net.md-5:bungeecord-chat:1.16-R0.4'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
     testImplementation 'org.bukkit:bukkit:1.13.2-R0.1-SNAPSHOT'
     testImplementation 'org.spigotmc:spigot-api:1.13.2-R0.1-SNAPSHOT'
